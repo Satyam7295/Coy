@@ -182,11 +182,11 @@ export default function Page() {
         <button className="avatar-button" aria-label="Your profile">S</button>
       </header>
 
-      <div className="mobile-tabs">
+      {!match && <div className="mobile-tabs">
         <button className={tab === "home" ? "selected" : ""} onClick={() => setTab("home")}><House size={18}/>Home</button>
         <button className={tab === "discover" ? "selected" : ""} onClick={() => setTab("discover")}><Sparkles size={18}/>Discover</button>
         <button className={tab === "matches" ? "selected" : ""} onClick={() => setTab("matches")}><Heart size={18}/>Matches{matches.length > 0 && <i>{matches.length}</i>}</button>
-      </div>
+      </div>}
 
       {tab === "home" ? <StoryReel onDiscover={() => setTab("discover")} /> : null}
 
@@ -234,11 +234,11 @@ export default function Page() {
         <div className="empty-state match-empty"><div className="empty-illustration"><Heart size={34}/></div><h3>Your story starts with a spark.</h3><p>When you and someone else both like each other, you’ll find them here.</p><button className="primary-button" onClick={() => setTab("discover")}>Explore Discover <Sparkles size={16}/></button></div>}
       </section>}
 
-      <nav className="desktop-nav">
+      {!match && <nav className="desktop-nav">
         <button className={tab === "home" ? "nav-active" : ""} onClick={() => setTab("home")}><House size={19}/>Home</button>
         <button className={tab === "discover" ? "nav-active" : ""} onClick={() => setTab("discover")}><Sparkles size={19}/>Discover</button>
         <button className={tab === "matches" ? "nav-active" : ""} onClick={() => setTab("matches")}><Heart size={19}/>Matches{matches.length > 0 && <i>{matches.length}</i>}</button>
-      </nav>
+      </nav>}
 
       {match && <div className="match-overlay"><div className="match-confetti">✦　✧　♡　✦</div><button className="close-match" onClick={() => setMatch(null)}>×</button><div className="match-content"><div className="match-bubbles"><img src={match.photo} alt={match.name}/><div className="you-bubble">S</div><span>♡</span></div><span className="eyebrow">THE UNIVERSE HAS GOOD TASTE</span><h2>It’s a <em>match!</em></h2><p>You and {match.name.split(" ")[0]} liked each other.</p><div className="match-note"><MessageCircle size={16}/> A new connection, a new beginning.</div><button className="primary-button" onClick={() => {setMatch(null);setTab("matches");}}>See your matches <Heart size={16}/></button><button className="keep-swiping" onClick={() => setMatch(null)}>Keep discovering</button></div></div>}
       <footer className="footer-note">made for meaningful little moments <span>♡</span></footer>
